@@ -135,22 +135,46 @@
   (setq dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size)))
 
 
-(setq dired-kill-when-opening-new-dired-buffer t)
+(setq dired-kill-when-opening-new-dired-buffer nil)
 (setq dired-auto-revert-buffer t)
 (require 'dired-x)
 (define-key dired-mode-map (kbd "C-+") 'dired-create-empty-file)
 
 ;; god-mode for modal, easier navigation
-(use-package god-mode
+;(use-package god-mode
+;  :config
+;  (god-mode-all))
+;(global-set-key (kbd "<escape>") #'god-mode-all)
+
+;(defun my-god-mode-update-cursor-type ()
+;  (setq cursor-type (if (or god-local-mode buffer-read-only) 'hollow 'bar)))
+
+;(add-to-list 'god-exempt-major-modes 'dired-mode)
+;(add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
+
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
   :config
-  (god-mode-all))
-(global-set-key (kbd "<escape>") #'god-mode-all)
+  ;; (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
-(defun my-god-mode-update-cursor-type ()
-  (setq cursor-type (if (or god-local-mode buffer-read-only) 'hollow 'bar)))
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-(add-to-list 'god-exempt-major-modes 'dired-mode)
-(add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
 
 (provide 'v-qol)
 ;;; v-qol.el ends here

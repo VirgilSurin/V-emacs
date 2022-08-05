@@ -10,21 +10,17 @@
 ;TODO: change the background of the modline if inactive/active
 ;; (set-face-attribute 'modeline-inactive nil :background  (face-attribute 'hl-line  :background))
 
-(use-package doom-modeline)
+(use-package doom-modeline
+  :init (doom-modeline-mode 1))
 
-(doom-modeline-mode 1)
 (doom-modeline-def-modeline 'main
   '(bar matches buffer-info remote-host buffer-position parrot selection-info)
   '(misc-info minor-modes checker input-method buffer-encoding major-mode process vcs "  "))
 
 ;TODO: move the lsp thingy from headerline to modeline
 (defvar og-modeline mode-line-format)
-(setq-default mode-line-format header-line-format)
+(setq-default mode-line-format " ")
 (setq-default header-line-format og-modeline)
-
-
-
-
 
 ;; font
 (setq nano-font-family-monospaced "JetBrains Mono Bold")
@@ -34,6 +30,11 @@
 ;; where to display what
 (setq display-buffer-alist '(
                              ("\\*eshell*"
+                              (display-buffer-reuse-window display-buffer-in-side-window)
+                              (side . bottom)
+                              (window-height . 10)
+                              )
+                             ("\\*shell*"
                               (display-buffer-reuse-window display-buffer-in-side-window)
                               (side . bottom)
                               (window-height . 10)

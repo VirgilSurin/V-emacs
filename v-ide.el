@@ -104,7 +104,8 @@
          lsp-keep-workspace-alive nil
          ;; lsp-log-io nil
          lsp-print-performance t)
-  :config 
+  :config
+  (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-intelephense-multi-root nil) ; don't scan unnecessary projects
   (with-eval-after-load 'lsp-intelephense
     (setf (lsp--client-multi-root (gethash 'iph lsp-clients)) nil))

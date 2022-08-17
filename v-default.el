@@ -103,6 +103,9 @@
 ;; Minimum window height
 (setq window-min-height 1)
 
+;; delete selection
+(delete-selection-mode 1)
+
 ;; Buffer encoding
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)

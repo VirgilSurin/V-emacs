@@ -51,15 +51,17 @@
       )
 
 (defun open-close-shell ()
-    "Open a shell buffer if none visible, kill it otherwise."
-    (interactive)
-    (let ((shell-buffer "*eshell*"))
-      (cond ((string= shell-buffer (buffer-name (window-buffer))) ; visible and focused
-             (delete-window))
-            (t                           ; invisible or unfocused
-             (eshell)))
-      )
+  "Open a shell buffer if none visible, kill it otherwise."
+  (interactive)
+  (let ((shell-buffer "*shell*"))
+    (cond ((string= shell-buffer (buffer-name (window-buffer))) ; visible and focused
+           (delete-window))
+          (t                            ; invisible or unfocused
+           (shell)))
     )
+  )
+
+
 
 (provide 'v-vanilla)
 ;;; v-vanilla.el ends here

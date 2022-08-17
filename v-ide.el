@@ -1,17 +1,21 @@
 ;;; Package -- Summary
 ;;; Commentary:
 ;;; Code:
+
+
 ;; visual guide-lines
 (use-package highlight-indent-guides
-    :config
-    (setq highlight-indent-guides-method 'character))
+  :config
+  (setq highlight-indent-guides-method 'character))
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
 ;; Allow for a larger memory usage to read subprocess
 (setq gc-cons-threshold 100000000) ;; 100 MB
 (setq read-process-output-max (* 1 1024 1024)) ;; 1 MB
 
-
+;; keep the code correctly indented
+(use-package aggressive-indent)
+(add-hook 'prog-mode-hook #'aggressive-indent-mode)
 ;; Parenthesis
 
 ;; Color for parenthesis indentation
@@ -51,7 +55,7 @@
   :config
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   (setq yas-indent-line 'fixed)
-  :hook (prog-mode . yas-minor-mode)
+  :hook (prog-mode-hook . yas-minor-mode)
   )
 
 

@@ -84,6 +84,9 @@
 ;; emacs ask for confirmation before comitting suicide
 (setq confirm-kill-emacs 'y-or-n-p)
 
+;; please do not overcrowd the kill ring
+(setq kill-ring-max 10)
+
 ;; bar cursor
 (setq-default cursor-type 'bar)
 

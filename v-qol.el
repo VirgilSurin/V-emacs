@@ -117,6 +117,10 @@
 
 (define-key (current-global-map) [remap comment-region] 'crux-duplicate-current-line-or-region)
 
+;; browse kill-ring
+(use-package browse-kill-ring)
+(browse-kill-ring-default-keybindings)
+
 
 ;; This package allows to go ignore comment when going to end-of-line
 (use-package mwim

@@ -131,6 +131,12 @@
 (global-set-key (kbd "M-;") 'comment-dwim-2)
 (define-key org-mode-map (kbd "M-;") 'org-comment-dwim-2)
 
+;; hungry delete
+(use-package hungry-delete
+  :config
+  (setq hungry-delete-join-reluctantly t)) ; will leave a space
+(global-hungry-delete-mode)
+
 ;; dired
 (use-package dirvish
   :ensure t

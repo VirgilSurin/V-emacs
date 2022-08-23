@@ -97,19 +97,19 @@
          ("C-o"           . crux-smart-open-line-above)
          ("C-j"           . crux-smart-open-line)
          ("C-M-k"         . crux-smart-kill-line)
-         ("C-c d"         . crux-duplicate-current-line-or-region)
          )
   )
 
 ;; I override crux-smart-kill-line because it is not smart the way I want
 (defun my-crux-smart-kill-line ()
-  "Kill the line and indent on first call. Kill the whole line on second call."
+  "Kill the line backward and indent on first call. Kill the whole line on second call."
   (interactive)
   (let ((orig-point (point)))
-    (mwim-beginning 1)
+    (mwim-beginning-of-code)
     (if (= orig-point (point))
         (crux-kill-whole-line)
-      (kill-line)                       ; comments
+      (goto-char orig-point)
+      (kill-line 0)
       (indent-according-to-mode))))
 
 (global-set-key (kbd "M-k") 'join-line)

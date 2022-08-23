@@ -56,8 +56,8 @@
   (setq which-key-idle-delay 0.2))
 
 ;; a better zap-to-char
-(use-package zzz-to-char)
-(global-set-key (kbd "M-z") #'zzz-to-char)
+(use-package avy-zap)
+(global-set-key (kbd "M-z") 'avy-zap-up-to-char-dwim)
 
 ;; AVY
 (use-package use-package-chords

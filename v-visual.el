@@ -23,8 +23,8 @@
 (setq-default header-line-format og-modeline)
 
 ;; font
-(setq nano-font-family-monospaced "JetBrains Mono Bold")
-(setq nano-font-size 22)
+(set-face-attribute 'default t :font "JetBrains Mono Bold")
+(set-face-attribute 'default nil :height 150)
 
 
 ;; where to display what

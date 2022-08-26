@@ -105,7 +105,7 @@
   "Kill the line backward and indent on first call. Kill the whole line on second call."
   (interactive)
   (let ((orig-point (point)))
-    (mwim-beginning-of-code)
+    (beginning-of-line-text)
     (if (= orig-point (point))
         (crux-kill-whole-line)
       (goto-char orig-point)

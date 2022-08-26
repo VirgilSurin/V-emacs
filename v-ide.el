@@ -13,9 +13,7 @@
 (setq gc-cons-threshold 100000000) ;; 100 MB
 (setq read-process-output-max (* 1 1024 1024)) ;; 1 MB
 
-;; keep the code correctly indented
-(use-package aggressive-indent)
-(add-hook 'prog-mode-hook #'aggressive-indent-mode)
+
 ;; Parenthesis
 
 ;; Color for parenthesis indentation

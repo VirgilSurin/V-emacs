@@ -53,7 +53,7 @@
 (defun open-close-shell ()
   "Open a shell buffer if none visible, kill it otherwise."
   (interactive)
-  (shell)
+  (vterm)
   ;; (let ((shell-buffer "*shell*"))
   ;;   (cond ((string= shell-buffer (buffer-name (window-buffer))) ; visible and focused
   ;;          (delete-window))

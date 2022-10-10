@@ -23,19 +23,22 @@
 (setq-default header-line-format og-modeline)
 
 ;; font
-(set-face-attribute 'default t :font "JetBrains Mono Bold")
-(set-face-attribute 'default nil :height 150)
-
+(set-face-attribute 'default nil :font "JetBrains Mono Light" :height 150)
 
 ;; where to display what
 (setq display-buffer-alist '(
+                             ("\\*vterm*"
+                              (display-buffer-reuse-window display-buffer-at-bottom)
+                              (side . bottom)
+                              (window-height . 10)
+                              )
                              ("\\*eshell*"
-                              (display-buffer-reuse-window display-buffer-in-side-window)
+                              (display-buffer-reuse-window display-buffer-at-bottom)
                               (side . bottom)
                               (window-height . 10)
                               )
                              ("\\*shell*"
-                              (display-buffer-reuse-window display-buffer-in-side-window)
+                              (display-buffer-reuse-window display-buffer-at-bottom)
                               (side . bottom)
                               (window-height . 10)
                               )
@@ -53,7 +56,14 @@
 (use-package doom-themes)
 (use-package gruvbox-theme)
 (use-package one-themes)
-(load-theme 'one-dark t)  
+(use-package dream-theme)
+;; (set-face-attribute 'hl-line nil :background "#363b47")
+;; (set-face-attribute 'region nil :background "#444c5e")
+;; (custom-theme-set-faces
+;;  'one-dark
+;;  '(region ((t (:background "#444c5e"))))
+;;  )
+(load-theme 'doom-one t)
 
 ;; Fall back font for glyph missing in Roboto
 (defface fallback '((t :family "Fira Code"
@@ -97,8 +107,6 @@
 (dimmer-configure-which-key)
 (dimmer-configure-magit)
 (dimmer-configure-company-box)
-(dimmer-mode t)
-
 
 
 ;; Dashboard !

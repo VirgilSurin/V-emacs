@@ -13,6 +13,8 @@
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done))
   :config
+  (setq swiper-use-visual-line nil)
+  (setq swiper-use-visual-line-p (lambda (a) nil))
   (setq ivy-height 10)
   (setq ivy-count-format "")
   (setq ivy-initial-inputs-alist nil)
@@ -94,9 +96,10 @@
 ;; CRUX - a kot of useful little things
 (use-package crux
   :bind (
-         ("C-o"           . crux-smart-open-line-above)
-         ("C-j"           . crux-smart-open-line)
-         ("C-M-k"         . crux-smart-kill-line)
+         ("C-o"      . crux-smart-open-line-above)
+         ("C-j"      . crux-smart-open-line)
+         ("C-M-k"    . crux-smart-kill-line)
+         ("C-c C-d"  . crux-duplicate-current-line-or-region)
          )
   )
 
@@ -114,8 +117,6 @@
 
 (global-set-key (kbd "M-k") 'join-line)
 (global-set-key (kbd "C-k") 'my-crux-smart-kill-line)
-
-(define-key (current-global-map) [remap comment-region] 'crux-duplicate-current-line-or-region)
 
 ;; browse kill-ring
 (use-package browse-kill-ring)
@@ -168,6 +169,12 @@
 
 (add-to-list 'god-exempt-major-modes 'dired-mode)
 (add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
+
+
+(use-package vterm
+  :ensure t
+  )
+(define-key vterm-mode-map (kbd "M-<up>") 'windmove-up)
 
 ;; (use-package evil
 ;;   :init

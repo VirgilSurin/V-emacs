@@ -41,21 +41,31 @@
 
 ;; syntax checking
 (use-package flycheck)
-(add-hook 'prog-mode-hook 'flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; code completion
-(use-package company)
+(use-package company
+  :config
+  (progn
+    (setq
+     company-minimum-prefix-length 2
+     ))
+  )
+
+(global-set-key (kbd "C-M-i") 'company-complete)
 (add-hook 'prog-mode-hook 'global-company-mode)
+(add-hook 'tex-mode-hook 'global-company-mode)
 
 
 ;; code snippets
 (use-package yasnippet
+  :ensure
   :config
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-  (setq yas-indent-line 'fixed)
-  :hook (prog-mode-hook . yas-minor-mode)
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  (add-hook 'text-mode-hook 'yas-minor-mode)
+  ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   )
-
 
 (use-package yasnippet-snippets
   :after yasnippet)
@@ -67,8 +77,8 @@
 (use-package tree-sitter)
 (use-package tree-sitter-langs)
 
-(require 'tree-sitter)
-(require 'tree-sitter-langs)
+;; (require 'tree-sitter)
+;; (require 'tree-sitter-langs)
 (global-tree-sitter-mode)
 (add-hook 'c-mode-hook #'tree-sitter-hl-mode)
 (add-hook 'lsp-mode-hook #'tree-sitter-hl-mode)
@@ -88,12 +98,12 @@
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          ;;(XXX-mode . lsp)
          ;; (java-mode . lsp)
-         (java-mode . #'lsp-deferred)
-         (python-mode . #'lsp-deferred)
-         (c-mode . #'lsp-deferred)
-         (ess-r-mode . #'lsp-deferred)
-         (c-mode . #'lsp-deferred)
-         (c++-mode . #'lsp-deferred)
+         (java-mode . lsp)
+         (python-mode . lsp)
+         (ess-r-mode . lsp)
+         (c-mode . lsp)
+         (c++-mode . lsp)
+         (rust-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
@@ -111,7 +121,8 @@
   (setq lsp-intelephense-multi-root nil) ; don't scan unnecessary projects
   (with-eval-after-load 'lsp-intelephense
     (setf (lsp--client-multi-root (gethash 'iph lsp-clients)) nil))
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  )
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (global-set-key (kbd "C-c i") 'lsp-ivy-workspace-symbol)
@@ -154,6 +165,11 @@
 (add-to-list 'auto-mode-alist '("\\.el$" . emacs-lisp-mode))
 ;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 
+;; Rust
+(use-package rustic)
+
+(use-package flycheck-rust
+  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;; SCHEME
 (add-to-list 'auto-mode-alist '("\\.scm$" . scheme-mode))
@@ -199,7 +215,24 @@
   :ensure auctex)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(setq TeX-PDF-mode t)                   ; compile to PDF by default
 (use-package pdf-tools)
+
+;; to use pdfview with auctex
+(setq TeX-view-program-selection '((output-pdf "PDF Tools")))
+
+;; to have the buffer refresh after compilation
+(add-hook 'TeX-after-compilation-finished-functions
+          #'TeX-revert-document-buffer)
+
+;; (define-key flyspell-mode-map (kbd "C-M-i") nil)
+;; (define-key flyspell-mode-map (kbd "C-M-i") 'company-complete)
+;; (define-key TeX-mode-map (kbd "C-M-i") nil)
+;; (define-key TeX-mode-map (kbd "C-M-i") 'company-complete)
 
 ;; Project
 (use-package projectile

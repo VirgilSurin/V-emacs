@@ -174,7 +174,7 @@
 (use-package vterm
   :ensure t
   )
-(define-key vterm-mode-map (kbd "M-<up>") 'windmove-up)
+(define-key vterm-mode-map (kbd "M-<up>") nil)
 
 ;; (use-package evil
 ;;   :init

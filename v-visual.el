@@ -25,6 +25,7 @@
 ;; font
 (set-face-attribute 'default nil :font "JetBrains Mono Light" :height 150)
 
+
 ;; where to display what
 (setq display-buffer-alist '(
                              ("\\*vterm*"

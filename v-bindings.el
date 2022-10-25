@@ -28,10 +28,6 @@
 ;; comment line
 (global-set-key (kbd "C-M-;") 'comment-line)
 
-
-;; kbd from my custom functions
-(require 'v-vanilla)
-
 (global-set-key (kbd "C-x C-i") 'open-init-file)
 (global-set-key (kbd "C-c t") 'open-close-shell)
 

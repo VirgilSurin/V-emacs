@@ -165,15 +165,19 @@
 (global-set-key (kbd "<escape>") #'god-mode-all)
 
 (defun my-god-mode-update-cursor-type ()
- (setq cursor-type (if (or god-local-mode buffer-read-only) 'hollow 'bar)))
+  (setq cursor-type (if (or god-local-mode buffer-read-only) 'hollow 'bar)))
 
 (add-to-list 'god-exempt-major-modes 'dired-mode)
+(add-to-list 'god-exempt-major-modes 'vterm-mode)
 (add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
 
 
 (use-package vterm
   :ensure t
+  :init
+  :custom (vterm-kill-buffer-on-exit t)
   )
+
 (define-key vterm-mode-map (kbd "M-<up>") nil)
 
 ;; (use-package evil

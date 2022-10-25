@@ -49,10 +49,10 @@
   (progn
     (setq
      company-minimum-prefix-length 2
+     company-idle-delay 0
      ))
   )
-
-(global-set-key (kbd "C-M-i") 'company-complete)
+(define-key prog-mode-map (kbd "<tab>") 'company-indent-or-complete-common)
 (add-hook 'prog-mode-hook 'global-company-mode)
 (add-hook 'tex-mode-hook 'global-company-mode)
 
@@ -138,14 +138,21 @@
   (setq lsp-ui-sideline-diagnostic-max-line-length 75)
   (setq lsp-ui-sideline-diagnostics-max-lines 5)
 
-  (lsp-ui-peek-enable t)
+  (lsp-ui-peek-enable nil)
+  (setq lsp-ui-doc-position 'top)
   (lsp-ui-doc-enable t)
   (setq lsp-ui-doc-show-with-cursor t)
 
   (lsp-enable-imenu)
   (setq lsp-ui-imenu-window-width 25)
+  
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
   (define-key lsp-mode-map (kbd "C-c l u") 'lsp-ui-imenu)
+  (define-key lsp-mode-map (kbd "C-M-c") 'lsp-ui-doc-focus-frame)
   )
+
+
 
 ;; PYTHON
 (use-package lsp-pyright
@@ -213,14 +220,26 @@
 ;; LATEX
 (use-package tex
   :ensure auctex)
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master nil)
+(use-package pdf-tools
+  :ensure t)
+;; (use-package cdlatex
+  ;; :ensure t)
+
+(setq reftex-plug-into-AUCTeX t
+      TeX-auto-save t
+      TeX-parse-self t
+      TeX-master nil
+      TeX-PDF-mode t)                   ; compile to PDF by default
+
+(require 'magic-latex-buffer)
+(setq magic-latex-enable-inline-image nil) ; no image preview
+
+;; (add-hook 'LaTeX-mode-hook #'turn-on-cdlatex)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(setq TeX-PDF-mode t)                   ; compile to PDF by default
-(use-package pdf-tools)
 
 ;; to use pdfview with auctex
 (setq TeX-view-program-selection '((output-pdf "PDF Tools")))

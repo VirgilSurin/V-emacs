@@ -46,11 +46,10 @@
 ;; code completion
 (use-package company
   :config
-  (progn
-    (setq
-     company-minimum-prefix-length 2
-     company-idle-delay 0
-     ))
+  (setq
+   company-minimum-prefix-length 2
+   company-idle-delay 0
+   )
   )
 (define-key prog-mode-map (kbd "<tab>") 'company-indent-or-complete-common)
 (add-hook 'prog-mode-hook 'global-company-mode)
@@ -223,7 +222,7 @@
 (use-package pdf-tools
   :ensure t)
 ;; (use-package cdlatex
-  ;; :ensure t)
+;; :ensure t)
 
 (setq reftex-plug-into-AUCTeX t
       TeX-auto-save t
@@ -262,9 +261,11 @@
   ("C-c p" . projectile-command-map)
   :init
   ;; NOTE: Set this to the folder where you keep your Git repos!
-  ;;(when (file-directory-p PROJECTS_DIR)
-  ;;  (setq projectile-project-search-path '(PROJECTS_DIR)))
+  (when (file-directory-p "~/projects/")
+   (setq projectile-project-search-path '("~/projects/")))
   (setq projectile-switch-project-action #'projectile-dired))
+
+
 
 (use-package counsel-projectile
   :config (counsel-projectile-mode))

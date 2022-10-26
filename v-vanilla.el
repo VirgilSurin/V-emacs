@@ -62,11 +62,5 @@
   ;;   )
   )
 
-(defun my-kill-buffer ()
-  "Kill the current buffer and the associated window."
-  (interactive)
-  (kill-buffer-and-window)
-  )
-
 (provide 'v-vanilla)
 ;;; v-vanilla.el ends here

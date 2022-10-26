@@ -138,6 +138,15 @@
 (global-set-key (kbd "C-x C-b") 'back-to-dashboard)
 
 
+(use-package mini-frame)
+
+(setq mini-frame-show-parameters '((top . 0.4)
+                                   (width . 0.6)
+                                   (left . 0.5)))
+
+(mini-frame-mode 1)
+
+(setq x-gtk-resize-child-frames 'resize-mode)
 ;; icons for dired
 ;; (use-package treemacs-icons-dired)
 ;; (add-hook 'dired-mode-hook 'treemacs-icons-dired-mode)

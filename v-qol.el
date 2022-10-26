@@ -98,7 +98,7 @@
   :bind (
          ("C-o"      . crux-smart-open-line-above)
          ("C-j"      . crux-smart-open-line)
-         ("C-M-k"    . crux-smart-kill-line)
+         ("C-k"    . crux-smart-kill-line)
          ("C-c C-d"  . crux-duplicate-current-line-or-region)
          )
   )
@@ -116,7 +116,7 @@
       (indent-according-to-mode))))
 
 (global-set-key (kbd "M-k") 'join-line)
-(global-set-key (kbd "C-k") 'my-crux-smart-kill-line)
+(global-set-key (kbd "C-M-k") 'my-crux-smart-kill-line)
 
 ;; browse kill-ring
 (use-package browse-kill-ring)

@@ -4,8 +4,10 @@
 
 ;; here you will find most of my vanilla bindings
 
+(require 'v-vanilla)
 ;; kill buffer
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
+(global-set-key (kbd "C-x C-k") 'kill-buffer-and-window)
 
 ;; moving between windows
 

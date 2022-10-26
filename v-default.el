@@ -55,6 +55,7 @@
 
 ;; Fill column at 80
 (setq fill-column 80)
+(display-fill-column-indicator-mode t)
 
 ;; line numbers
 (global-display-line-numbers-mode 1)
@@ -84,8 +85,11 @@
 ;; emacs ask for confirmation before comitting suicide
 (setq confirm-kill-emacs 'y-or-n-p)
 
+;; don't ask confirmation for killing active process
+(setq kill-buffer-query-functions nil)
+
 ;; please do not overcrowd the kill ring
-(setq kill-ring-max 10)
+(setq kill-ring-max 20)
 
 ;; bar cursor
 (setq-default cursor-type 'bar)

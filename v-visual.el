@@ -17,7 +17,7 @@
   '(bar matches buffer-info remote-host buffer-position parrot selection-info)
   '(misc-info minor-modes checker input-method buffer-encoding major-mode process vcs "  "))
 
-;TODO: move the lsp thingy from headerline to modeline
+
 (defvar og-modeline mode-line-format)
 (setq-default mode-line-format " ")
 (setq-default header-line-format og-modeline)

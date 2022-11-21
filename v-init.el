@@ -41,9 +41,10 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(require 'v-visual)
+
 (require 'v-bindings)
 (require 'v-default)
+(require 'v-visual)
 (require 'v-qol)
 (require 'v-org)
 (require 'v-ide)

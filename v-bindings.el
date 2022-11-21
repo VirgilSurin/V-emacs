@@ -6,6 +6,7 @@
 
 (require 'v-vanilla)
 ;; kill buffer
+(global-set-key (kbd "C-q") 'kill-current-buffer)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x C-k") 'kill-buffer-and-window)
 

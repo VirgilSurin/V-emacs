@@ -85,7 +85,8 @@
           '(
             (avy-goto-char . (?d ?f ?g ?h ?j ?k))
             (avy-goto-word-1 . (?d ?f ?g ?h ?j ?k))
-            (avy-goto-line . (?d ?f ?g ?h ?j ?k))
+            ;; (avy-goto-line . (?d ?f ?g ?h ?j ?k))
+            (avy-goto-line . (?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9 ?0))
             ))
     (setq avy-style 'at-full)
     :chords
@@ -142,6 +143,11 @@
   (setq hungry-delete-join-reluctantly t)) ; will leave a space
 (global-hungry-delete-mode)
 
+(winner-mode 1)
+(global-set-key (kbd "C-c <left>")  'winner-undo)
+(global-set-key (kbd "C-c <right>") 'winner-redo)
+
+
 ;; dired
 (use-package dirvish
   :ensure t
@@ -150,8 +156,28 @@
   (dirvish-override-dired-mode)
   :config
   (setq dirvish-reuse-session t)
-  (setq dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size)))
-
+  (setq dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size))
+   :bind ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
+   (("C-x d" . dirvish-dwim)
+    :map dirvish-mode-map ; Dirvish inherits `dired-mode-map'
+    ("a"   . dirvish-quick-access)
+    ("f"   . dirvish-file-info-menu)
+    ("y"   . dirvish-yank-menu)
+    ("N"   . dirvish-narrow)
+    ("h"   . dirvish-history-jump) ; remapped `describe-mode'
+    ("s"   . dirvish-quicksort)    ; remapped `dired-sort-toggle-or-edit'
+    ("v"   . dirvish-vc-menu)      ; remapped `dired-view-file'
+    ("TAB" . dirvish-subtree-toggle)
+    ("M-f" . dirvish-history-go-forward)
+    ("M-b" . dirvish-history-go-backward)
+    ("M-l" . dirvish-ls-switches-menu)
+    ("M-m" . dirvish-mark-menu)
+    ("M-t" . dirvish-layout-toggle)
+    ("M-s" . dirvish-setup-menu)
+    ("M-e" . dirvish-emerge-menu)
+    ("M-j" . dirvish-fd-jump)
+    )
+   )
 
 (setq dired-kill-when-opening-new-dired-buffer nil)
 (setq dired-auto-revert-buffer t)
@@ -162,7 +188,7 @@
 (use-package god-mode
  :config
  (god-mode-all))
-(global-set-key (kbd "<escape>") #'god-mode-all)
+(global-set-key (kbd "<escape>") #'god-mode)
 
 (defun my-god-mode-update-cursor-type ()
   (setq cursor-type (if (or god-local-mode buffer-read-only) 'hollow 'bar)))
@@ -177,7 +203,8 @@
   :init
   :custom (vterm-kill-buffer-on-exit t)
   )
-
+(define-key vterm-mode-map (kbd "<escape>") 'vterm-copy-mode)
+(define-key vterm-mode-map (kbd "C-s") nil)
 (define-key vterm-mode-map (kbd "M-<up>") nil)
 
 ;; (use-package evil

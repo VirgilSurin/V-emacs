@@ -11,7 +11,8 @@
 ;; (set-face-attribute 'modeline-inactive nil :background  (face-attribute 'hl-line  :background))
 
 (use-package doom-modeline
-  :init (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1)
+  :config (setq doom-modeline-height 15))
 
 (doom-modeline-def-modeline 'main
   '(bar matches buffer-info remote-host buffer-position parrot selection-info)
@@ -80,18 +81,18 @@
 (setq default-frame-alist
       (append (list
 	           '(min-height . 1)
-               '(height     . 45)
+               '(height     . 25)
 	           '(min-width  . 1)
                '(width      . 81)
                '(vertical-scroll-bars . nil)
-               '(internal-border-width . 24)
+               '(internal-border-width . 12)
                '(left-fringe    . 10)
                '(right-fringe   . 10)
                '(tool-bar-lines . 0)
                '(menu-bar-lines . 0))))
 
 
-(setq window-divider-default-right-width 24)
+(setq window-divider-default-right-width 12)
 (setq window-divider-default-places 'right-only)
 (window-divider-mode 1)
 
@@ -144,7 +145,7 @@
                                    (width . 0.6)
                                    (left . 0.5)))
 
-(mini-frame-mode 1)
+;; (mini-frame-mode 1)
 
 (setq x-gtk-resize-child-frames 'resize-mode)
 ;; icons for dired

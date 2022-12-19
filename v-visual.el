@@ -12,16 +12,27 @@
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
-  :config (setq doom-modeline-height 15))
+  :config (setq
+           doom-modeline-height 15
+           doom-modeline--battery-status t
+           doom-modeline-buffer-file-name-style 'truncate-with-project
+           doom-modeline-major-mode-icon t
+           doom-modeline-time-icon t
+           doom-modeline-buffer-encoding nil
+           doom-modeline-project-detection 'projectile
+           ))
 
-(doom-modeline-def-modeline 'main
-  '(bar matches buffer-info remote-host buffer-position parrot selection-info)
-  '(misc-info minor-modes checker input-method buffer-encoding major-mode process vcs "  "))
+;; (doom-modeline-def-modeline 'main
+  ;; '(bar matches buffer-info remote-host buffer-position parrot selection-info)
+  ;; '(misc-info minor-modes checker major-mode process vcs "  "))
 
 
-(defvar og-modeline mode-line-format)
-(setq-default mode-line-format " ")
-(setq-default header-line-format og-modeline)
+;; (defvar og-modeline mode-line-format)
+;; (setq-default mode-line-format " ")
+;; (setq-default header-line-format og-modeline)
+
+
+(setq display-battery-mode t)
 
 ;; font
 (set-face-attribute 'default nil :font "JetBrains Mono Light" :height 150)
@@ -65,7 +76,20 @@
 ;;  'one-dark
 ;;  '(region ((t (:background "#444c5e"))))
 ;;  )
-(load-theme 'doom-one t)
+
+(setq window-divider-default-right-width 12)
+(setq window-divider-default-places 'right-only)
+(window-divider-mode 1)
+
+
+
+(load-theme 'nord t)
+
+;; color of buffer separator
+(set-face-attribute 'internal-border nil :foreground  (face-attribute 'default  :background))
+(set-face-attribute 'window-divider nil :foreground  (face-attribute 'default  :background))
+(set-face-attribute 'window-divider-first-pixel nil :foreground  (face-attribute 'default  :background))
+(set-face-attribute 'window-divider-last-pixel nil :foreground  (face-attribute 'default  :background))
 
 ;; Fall back font for glyph missing in Roboto
 (defface fallback '((t :family "Fira Code"
@@ -92,15 +116,6 @@
                '(menu-bar-lines . 0))))
 
 
-(setq window-divider-default-right-width 12)
-(setq window-divider-default-places 'right-only)
-(window-divider-mode 1)
-
-;; color of buffer separator
-(set-face-attribute 'internal-border nil :foreground  (face-attribute 'default  :background))
-(set-face-attribute 'window-divider nil :foreground  (face-attribute 'default  :background))
-(set-face-attribute 'window-divider-first-pixel nil :foreground  (face-attribute 'default  :background))
-(set-face-attribute 'window-divider-last-pixel nil :foreground  (face-attribute 'default  :background))
 
 
 ;; dimmer

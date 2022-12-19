@@ -247,6 +247,9 @@
 (add-hook 'TeX-after-compilation-finished-functions
           #'TeX-revert-document-buffer)
 
+(setq LaTeX-verbatim-regexp
+      (concat "\\`\\(begin\\|end\\){" (regexp-quote "verbatim") "}\\'"))
+
 ;; (define-key flyspell-mode-map (kbd "C-M-i") nil)
 ;; (define-key flyspell-mode-map (kbd "C-M-i") 'company-complete)
 ;; (define-key TeX-mode-map (kbd "C-M-i") nil)

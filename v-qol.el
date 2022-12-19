@@ -38,6 +38,17 @@
          )
 )
 
+(defun update-window-divider (theme)
+  "Update the window divider background colors according to new theme bg."
+  (interactive)
+  (set-face-attribute 'internal-border nil :foreground  (face-attribute 'default  :background))
+(set-face-attribute 'window-divider nil :foreground  (face-attribute 'default  :background))
+(set-face-attribute 'window-divider-first-pixel nil :foreground  (face-attribute 'default  :background))
+(set-face-attribute 'window-divider-last-pixel nil :foreground  (face-attribute 'default  :background))
+)
+
+(advice-add 'counsel-load-theme :after #'update-window-divider)
+
 ;; Helpful - better C-h
 (use-package helpful
   :custom
@@ -188,10 +199,11 @@
 (use-package god-mode
  :config
  (god-mode-all))
-(global-set-key (kbd "<escape>") #'god-mode)
+(global-set-key (kbd "<escape>") #'god-local-mode)
+(define-key god-local-mode-map (kbd "i") #'god-local-mode)
 
 (defun my-god-mode-update-cursor-type ()
-  (setq cursor-type (if (or god-local-mode buffer-read-only) 'hollow 'bar)))
+  (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
 
 (add-to-list 'god-exempt-major-modes 'dired-mode)
 (add-to-list 'god-exempt-major-modes 'vterm-mode)

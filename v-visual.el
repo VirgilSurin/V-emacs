@@ -31,9 +31,6 @@
 ;; (setq-default mode-line-format " ")
 ;; (setq-default header-line-format og-modeline)
 
-
-(setq display-battery-mode t)
-
 ;; font
 (set-face-attribute 'default nil :font "JetBrains Mono Light" :height 150)
 
@@ -152,6 +149,8 @@
     (dashboard-refresh-buffer)
     )
 (global-set-key (kbd "C-x C-b") 'back-to-dashboard)
+
+(display-battery-mode)
 
 
 (use-package mini-frame)

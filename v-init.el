@@ -48,7 +48,7 @@
 (require 'v-ide)
 (require 'v-bindings)
 (require 'v-exwm)
-
+(require 'v-latex)
 
 
 (provide 'v-init)

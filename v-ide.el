@@ -53,17 +53,14 @@
   )
 (define-key prog-mode-map (kbd "<tab>") 'company-indent-or-complete-common)
 (add-hook 'prog-mode-hook 'global-company-mode)
-(add-hook 'tex-mode-hook 'global-company-mode)
+(add-hook 'LaTeX-mode-hook 'global-company-mode)
 
 
 ;; code snippets
 (use-package yasnippet
   :ensure
   :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode)
-  (add-hook 'text-mode-hook 'yas-minor-mode)
-  ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   )
 
 (use-package yasnippet-snippets
@@ -71,6 +68,8 @@
 
 (use-package java-snippets
   :after yasnippet)
+
+(yas-global-mode 1)
 
 ;; better syntex highlight
 (use-package tree-sitter)
@@ -216,39 +215,6 @@
 
 ;; DEBUG : TODO
 
-;; LATEX
-(use-package tex
-  :ensure auctex)
-(use-package pdf-tools
-  :ensure t)
-;; (use-package cdlatex
-;; :ensure t)
-
-(setq reftex-plug-into-AUCTeX t
-      TeX-auto-save t
-      TeX-parse-self t
-      TeX-master nil
-      TeX-PDF-mode t)                   ; compile to PDF by default
-
-(require 'magic-latex-buffer)
-(setq magic-latex-enable-inline-image nil) ; no image preview
-
-;; (add-hook 'LaTeX-mode-hook #'turn-on-cdlatex)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-
-;; to use pdfview with auctex
-(setq TeX-view-program-selection '((output-pdf "PDF Tools")))
-
-;; to have the buffer refresh after compilation
-(add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer)
-
-(setq LaTeX-verbatim-regexp
-      (concat "\\`\\(begin\\|end\\){" (regexp-quote "verbatim") "}\\'"))
 
 ;; (define-key flyspell-mode-map (kbd "C-M-i") nil)
 ;; (define-key flyspell-mode-map (kbd "C-M-i") 'company-complete)

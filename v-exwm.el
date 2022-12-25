@@ -13,7 +13,12 @@
   (start-process-shell-command "xmodmap" nil "xmodmap ~/.emacs.d/exwm/Xmodmap")
   (start-process-shell-command "xkbcomp" nil "xkbcomp ~/.emacs.d/exwm/Xkbcomp")
 
-  (exwm-enable)
+  ;; (exwm-enable)
+  (exwm-input-set-key (kbd "s-r") 'exwm-reset)
+  (exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
+  (exwm-input-set-key (kbd "s-&") #'(lambda (command)
+                                      (interactive (list (read-shell-command "$ ")))
+                                      (start-process-shell-command command nil command)))
   )
 
 (provide 'v-exwm)

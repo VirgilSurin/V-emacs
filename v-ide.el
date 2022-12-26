@@ -264,10 +264,8 @@
   ;; disable inline previews
   (delq 'company-preview-if-just-one-frontend company-frontends)
 
-  (define-key company-mode-map (kbd "S-<tab>") 'my-tab)
-  (define-key company-mode-map (kbd "S-TAB") 'my-tab)
-  (define-key company-active-map (kbd "S-<tab>") 'my-tab)
-  (define-key company-active-map (kbd "S-TAB") 'my-tab))
+  (define-key company-mode-map (kbd "<backtab>") 'my-tab)
+  (define-key company-active-map (kbd "<backtab>") 'my-tab))
 
 (provide 'v-ide)
 

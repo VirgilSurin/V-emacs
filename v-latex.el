@@ -1,11 +1,46 @@
-;; LATEX
+
 
 (use-package tex
   :ensure auctex)
 (use-package pdf-tools
-  :ensure t)
+  :ensure t
+  :config
+  ;; initialise
+  (pdf-tools-install)
+  ;; open pdfs scaled to fit page
+  (setq-default pdf-view-display-size 'fit-page)
+  ;; automatically annotate highlights
+  (setq pdf-annot-activate-created-annotations t)
+  ;; use normal isearch
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  ;; keyboard shortcuts
+  (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
+  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
+  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
+  ;; wait until map is available
+  (with-eval-after-load "pdf-annot"
+    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<return>") 'pdf-annot-edit-contents-commit)
+    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<S-return>") 'newline))
+  )
+;; PDF
+
+;; LATEX
+
+(defun vs/latex-mode-visual-fill ()
+  "Doc."
+  (setq visual-fill-column-width 110
+        fill-column 110
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1)
+  )
+
 
 (with-eval-after-load 'latex
+  
+  
+  (add-hook 'LaTeX-mode-hook (lambda () (display-line-numbers-mode 0)))
+  (add-hook 'LaTeX-mode-hook 'vs/latex-mode-visual-fill)
+  
 
   (customize-set-variable 'TeX-auto-save t)
   (customize-set-variable 'TeX-parse-self t)

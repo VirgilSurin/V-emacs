@@ -61,6 +61,12 @@
   :ensure
   :config
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  ;; rebind the snippet expand to C-tab
+  (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil)
+  ;; Bind `SPC' to `yas-expand' when snippet expansion available (it
+  ;; will still call `self-insert-command' otherwise).
+  (define-key yas-minor-mode-map (kbd "C-<tab>") yas-maybe-expand)
   )
 
 (use-package yasnippet-snippets

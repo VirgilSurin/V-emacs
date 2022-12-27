@@ -39,27 +39,12 @@
   (find-file EMACS_INIT)
   )
 
-;; shell
-(add-to-list 'display-buffer-alist
-      '(
-        ("*eshell*"
-         (display-buffer-reuse-window display-buffer-at-bottom)
-         (window-height . 0.25)
-         (reusable-frames . nil)
-         )
-        )
-      )
+
 
 (defun open-close-shell ()
   "Open a shell buffer if none visible, kill it otherwise."
   (interactive)
   (vterm)
-  ;; (let ((shell-buffer "*shell*"))
-  ;;   (cond ((string= shell-buffer (buffer-name (window-buffer))) ; visible and focused
-  ;;          (delete-window))
-  ;;         (t                            ; invisible or unfocused
-  ;;          (shell)))
-  ;;   )
   )
 
 (provide 'v-vanilla)

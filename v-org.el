@@ -65,5 +65,5 @@
   :hook (org-mode . vs/org-mode-visual-fill)
   )
 
-
+(add-hook 'org-mode-hook 'vs/org-mode-visual-fill)
 (provide 'v-org)

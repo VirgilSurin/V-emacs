@@ -78,15 +78,20 @@
 (setq window-divider-default-places 'right-only)
 (window-divider-mode 1)
 
+;; color of buffer separator
+(defun vs/update-windows-borders ()
+  "Update internal borders of windows and window divider color."
+  (interactive)
+  (set-face-attribute 'internal-border nil :foreground  (face-attribute 'default  :background))
+  (set-face-attribute 'window-divider nil :foreground  (face-attribute 'default  :background))
+  (set-face-attribute 'window-divider-first-pixel nil :foreground  (face-attribute 'default  :background))
+  (set-face-attribute 'window-divider-last-pixel nil :foreground  (face-attribute 'mode-line-inactive  :background))
+  )
 
 
 (load-theme 'nord t)
+(vs/update-windows-borders)
 
-;; color of buffer separator
-(set-face-attribute 'internal-border nil :foreground  (face-attribute 'default  :background))
-(set-face-attribute 'window-divider nil :foreground  (face-attribute 'default  :background))
-(set-face-attribute 'window-divider-first-pixel nil :foreground  (face-attribute 'default  :background))
-(set-face-attribute 'window-divider-last-pixel nil :foreground  (face-attribute 'default  :background))
 
 ;; Fall back font for glyph missing in Roboto
 (defface fallback '((t :family "Fira Code"

@@ -222,10 +222,6 @@
 ;; DEBUG : TODO
 
 
-;; (define-key flyspell-mode-map (kbd "C-M-i") nil)
-;; (define-key flyspell-mode-map (kbd "C-M-i") 'company-complete)
-;; (define-key TeX-mode-map (kbd "C-M-i") nil)
-;; (define-key TeX-mode-map (kbd "C-M-i") 'company-complete)
 
 ;; Project
 (use-package projectile

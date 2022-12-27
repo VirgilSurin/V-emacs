@@ -49,6 +49,6 @@
 (require 'v-bindings)
 (require 'v-exwm)
 (require 'v-latex)
-
+(require 'v-mail)
 
 (provide 'v-init)

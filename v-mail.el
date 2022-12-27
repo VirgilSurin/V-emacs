@@ -2,41 +2,39 @@
 ;;; Commentary:
 ;;; Code:
 
-;TODO: do
-(use-package mu4e)
 
-;; Set up some common mu4e variables
-(setq mu4e-maildir "~/Maildir")
-(setq mu4e-sent-folder "/sent")
-(setq mu4e-drafts-folder "/drafts")
-(setq mu4e-trash-folder "/trash")
+(use-package mu4e
+  :ensure nil
+  :load-path "/usr/share/emacs/site-lisp/mu4e/"
+  ;; :defer 20 ; Wait until 20 seconds after startup
+  :config
 
-;; Set up the default mu4e compose command
-(setq mu4e-compose-signature-auto-include t)
-(setq mu4e-compose-format-flowed t)
-(setq mu4e-compose-signature
-      (concat
-       "Cordialement,\n"
-       "Virgil Surin\n"))
+  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  (setq mu4e-change-filenames-when-moving t)
 
-;; Set up some handy shortcuts
-(setq mu4e-maildir-shortcuts
-      '(("/inbox" . ?i)
-        ("/sent" . ?s)
-        ("/trash" . ?t)))
+  ;; Refresh mail using isync every 10 minutes
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir "~/Mail")
 
-;; Set up the the folder-wise poll interval
-(setq mu4e-update-interval 300)
+  (setq mu4e-drafts-folder "/[Gmail]/Drafts")
+  (setq mu4e-sent-folder   "/[Gmail]/Sent Mail")
+  (setq mu4e-refile-folder "/[Gmail]/All Mail")
+  (setq mu4e-trash-folder  "/[Gmail]/Trash")
 
-;; Bookmarks
-(setq mu4e-bookmarks
-      `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
-        ("date:today..now" "Today's messages" ?t)
-        ("date:7d..now" "Last 7 days" ?w)))
+  
+  (setq mu4e-maildir-shortcuts
+        '((:maildir "/Inbox"    :key ?i)
+          (:maildir "/[Gmail]/Sent Mail" :key ?s)
+          (:maildir "/[Gmail]/Trash"     :key ?t)
+          (:maildir "/[Gmail]/Drafts"    :key ?d)
+          (:maildir "/[Gmail]/All Mail"  :key ?a)))
 
-;; Start the mu4e mail client
-(mu4e)
+  )
 
+;; configure email address for mu4e
+(setq user-mail-address "virgil.surin@gmail.com"
+      user-full-name  "Virgil Surin")
 
 
 

@@ -140,7 +140,10 @@
 (set-frame-parameter (selected-frame) 'fullscreen 'maximized) 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; Move all the backup files to specific cache directory
+;; turn on auto revert mode
+(global-auto-revert-mode t)
+
+;; move all the backup files to specific cache directory
 ;; This way you won't have annoying temporary files starting with ~(tilde) in each directory
 ;; Following setting will move temporary files to specific folders inside cache directory in EMACS_DIR
 

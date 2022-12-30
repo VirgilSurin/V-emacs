@@ -77,7 +77,6 @@
   (customize-set-variable 'TeX-electric-math (cons "$" "$"))
   
   ;; open all buffers with the math mode and auto-fill mode
-  (add-hook 'LaTeX-mode-hook #'auto-fill-mode)
   (add-hook 'LaTeX-mode-hook #'LaTeX-math-mode)
   
   ;; add support for references

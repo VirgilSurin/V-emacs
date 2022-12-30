@@ -139,7 +139,7 @@
   :config
   (lsp-ui-sideline-enable t)
   (setq lsp-ui-sideline-show-code-actions nil)
-  (setq lsp-ui-sideline-diagnostic-max-line-length 75)
+  (setq lsp-ui-sideline-diagnostic-max-line-length 200)
   (setq lsp-ui-sideline-diagnostics-max-lines 5)
 
   (lsp-ui-peek-enable nil)

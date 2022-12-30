@@ -64,7 +64,8 @@
                 term-mode-hook
                 shell-mode-hook
                 treemacs-mode-hook
-                eshell-mode-hook))
+                eshell-mode-hook
+                pdf-view-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; No confirmation for visiting non-existent files

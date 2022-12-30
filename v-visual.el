@@ -88,9 +88,74 @@
   (set-face-attribute 'window-divider-last-pixel nil :foreground  (face-attribute 'mode-line-inactive  :background))
   )
 
+;; define new face
+(defface vs/nord-background
+  '(
+    (t :background "#2E3440"
+       :foreground "#D8DEE9")
+    )
+  "Nord background face."
+  :group 'nord
+  )
+(defface vs/nord-hl-line
+  '(
+    (t :background "#3B4252")
+    )
+  "Nord hl-line face."
+  :group 'nord
+  )
+(defface vs/line-number
+  '(
+    (t :background "#2E3440"
+       :foreground "#4C566A")
+    )
+  "Nord linum face."
+  :group 'nord
+  )
 
-(load-theme 'nord t)
-(vs/update-windows-borders)
+(defface vs/nord-highlight
+  '(
+    (t :background "#4C566A"            ; for region highlight
+       :foreground "#8FBCBB")           ; for parenthesis highlighting
+    )
+  "Nord highlight face."
+  :group 'nord
+  )
+
+;TODO: change the background of the modline if inactive/active and the border of frame around buffer
+(defun vs/nordify ()
+  "Turn the current them into a nordify-version (new background, new hl-line, new window-divider)."
+  (interactive)
+  ;; background
+  (set-face-attribute 'default nil :background  (face-attribute 'vs/nord-background  :background))
+  ;; line highlight
+  (set-face-attribute 'hl-line nil :background (face-attribute 'vs/nord-hl-line :background))
+  ;; region highlight
+  (set-face-attribute 'region nil :background (face-attribute 'vs/nord-highlight :background))
+  ;; parenthesis matching
+  (set-face-attribute 'show-paren-match nil :background (face-attribute 'vs/nord-highlight :foreground))
+  ;; window divider
+  (set-face-attribute 'internal-border nil :foreground  (face-attribute 'vs/nord-background  :background))
+  (set-face-attribute 'window-divider nil :foreground  (face-attribute 'vs/nord-background  :background))
+  (set-face-attribute 'window-divider-first-pixel nil :foreground  (face-attribute 'vs/nord-background  :background))
+  (set-face-attribute 'window-divider-last-pixel nil :foreground  (face-attribute 'mode-line-inactive  :background))
+  ;; fringe
+  (set-face-attribute 'fringe nil :background (face-attribute 'vs/nord-background :background))
+  (set-face-attribute 'fringe nil :foreground (face-attribute 'vs/nord-background :foreground))
+  ;; frame border
+  (set-face-attribute 'vertical-border nil :foreground (face-attribute 'vs/nord-background :background))
+  (set-face-attribute 'border nil :foreground (face-attribute 'vs/nord-background :background))
+  ;; linum
+  (set-face-attribute 'line-number nil :background (face-attribute 'vs/nord-background :background))
+  (set-face-attribute 'line-number-current-line nil :foreground (face-attribute 'vs/line-number :foreground))
+  (set-face-attribute 'line-number-current-line nil :background (face-attribute 'vs/line-number :background))
+  ;; border
+  )
+
+
+
+(load-theme 'doom-material t)
+(vs/nordify)
 
 
 ;; Fall back font for glyph missing in Roboto

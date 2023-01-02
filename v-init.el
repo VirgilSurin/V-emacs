@@ -42,6 +42,7 @@
 (setq use-package-always-ensure t)
 
 (require 'v-default)
+(require 'v-edit)
 (require 'v-visual)
 (require 'v-qol)
 (require 'v-org)

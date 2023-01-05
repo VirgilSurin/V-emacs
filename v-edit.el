@@ -3,14 +3,6 @@
 ;;; Code:
 
 ;; AVY
-(use-package use-package-chords
-  :ensure t
-  :init 
-  :config (key-chord-mode 1)
-  (setq key-chord-two-keys-delay 0.2)
-  (setq key-chord-one-key-delay 0.3) ; default 0.2
-  )
-
 (use-package avy 
     :ensure t
     :config
@@ -67,9 +59,9 @@
 (use-package evil
   :init
   (setq evil-want-integration t)
- (setq evil-want-keybinding nil)
+  (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
+  (setq evil-want-C-i-jump t)
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
@@ -87,19 +79,56 @@
   :config
   (evil-collection-init))
 
+;; comment line
+(global-set-key (kbd "C-M-;") 'comment-line)
 
-;; god-mode for modal, easier navigation
-(use-package god-mode)
-;; (god-mode-all)
-;; (global-set-key (kbd "<escape>") #'god-local-mode)
-;; (define-key god-local-mode-map (kbd "i") #'god-local-mode)
-;; (defun my-god-mode-update-cursor-type ()
-  ;; (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
 
-;; (add-to-list 'god-exempt-major-modes 'dired-mode)
-;; (add-to-list 'god-exempt-major-modes 'vterm-mode)
-;; (add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
+;; kill buffer
+(global-set-key (kbd "C-q") 'kill-current-buffer)
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
+(global-set-key (kbd "C-x C-k") 'kill-buffer-and-window)
 
+
+(global-set-key (kbd "C-x C-i") 'open-init-file)
+(global-set-key (kbd "C-c t") 'open-close-shell)
+
+(define-key (current-global-map) [remap forward-sexp] 'my_forward_sexp)
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; KEYBINDING SECTION ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package general
+  :config
+  (general-evil-setup t)
+  (general-create-definer vs/leader-key 
+    :states '(normal visual insert emacs)
+    :keymaps 'override
+    :prefix "SPC"
+    :global-prefix "C-SPC")
+
+  (vs/leader-key
+    "t" '(:ignore t :which-key "toggles")
+    "tt" '(counsel-load-theme :which-key "choose theme")
+    "f" '(:ignore t :which-key "files")
+    "ff" '(counsel-find-file :which-key "find file")
+    "fr" '(counsel-recentf :which-key "recent files")
+    "fh" '((lambda () (interactive) (counsel-find-file "~/.")) :which-key "home")
+    "fc" '((lambda () (interactive) (counsel-find-file "~/OneDrive/")) :which-key "onedrive")
+    "p" '(:ignore t :which-key "projects")
+    "pf" '(projectile-find-file :which-key "find file in project")
+    "pp" '(projectile-switch-project :which-key "switch project")
+    "ps" '(projectile-save-project-buffers :which-key "save project buffers")
+    "pg" '(counsel-projectile-grep :which-key "grep project")
+    "pb" '(projectile-switch-to-buffer :which-key "switch to buffer")
+    "pk" '(projectile-kill-buffers :which-key "kill project buffers")
+    "b" '(:ignore t :which-key "buffers")
+    "bb" '(ivy-switch-buffer :which-key "switch buffer")
+    "bk" '(kill-current-buffer :which-key "kill buffer")
+    "bd" '(kill-buffer-and-window :which-key "kill buffer and window")
+    "g" '(magit-status :which-key "magit")
+    )
+  )
 
 (provide 'v-edit)
 ;;; v-edit.el ends here

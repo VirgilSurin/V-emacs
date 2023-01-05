@@ -42,12 +42,11 @@
 (setq use-package-always-ensure t)
 
 (require 'v-default)
-(require 'v-edit)
 (require 'v-visual)
 (require 'v-qol)
+(require 'v-edit)
 (require 'v-org)
 (require 'v-ide)
-(require 'v-bindings)
 (require 'v-exwm)
 (require 'v-latex)
 (require 'v-mail)

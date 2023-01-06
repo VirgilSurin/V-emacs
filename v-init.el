@@ -43,8 +43,8 @@
 
 (require 'v-default)
 (require 'v-visual)
-(require 'v-qol)
 (require 'v-edit)
+(require 'v-qol)
 (require 'v-org)
 (require 'v-ide)
 (require 'v-exwm)

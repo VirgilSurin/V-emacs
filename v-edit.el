@@ -29,16 +29,7 @@
 (global-set-key (kbd "M-g k") 'avy-goto-char-timer)
 
 ;; CRUX - a kot of useful little things
-(use-package crux
-  :bind (
-         ("C-o"      . crux-smart-open-line-above)
-         ("C-j"      . crux-smart-open-line)
-         ("C-k"    . crux-smart-kill-line)
-         ("M-k"    . crux-kill-whole-line)
-         ("C-<backspace>" . crux-kill-line-backwards)
-         ("C-c d"  . crux-duplicate-current-line-or-region)
-         )
-  )
+(use-package crux)
 
 ;; This package allows to go ignore comment when going to end-of-line
 (use-package mwim
@@ -76,8 +67,10 @@
 
 (use-package evil-collection
   :after evil
+  :custom (evil-collection-setup-minibuffer t)
   :config
-  (evil-collection-init))
+  (evil-collection-init)
+  (evil-collection-vterm-setup))
 
 ;; comment line
 (global-set-key (kbd "C-M-;") 'comment-line)
@@ -88,9 +81,6 @@
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x C-k") 'kill-buffer-and-window)
 
-
-(global-set-key (kbd "C-x C-i") 'open-init-file)
-(global-set-key (kbd "C-c t") 'open-close-shell)
 
 (define-key (current-global-map) [remap forward-sexp] 'my_forward_sexp)
 

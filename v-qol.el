@@ -115,9 +115,7 @@
   :init
   :custom (vterm-kill-buffer-on-exit t)
   )
-(define-key vterm-mode-map (kbd "<escape>") 'vterm-copy-mode)
 (define-key vterm-mode-map (kbd "C-s") nil)
-(define-key vterm-mode-map (kbd "M-<up>") nil)
 
 
 ;; Hydra

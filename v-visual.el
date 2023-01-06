@@ -2,6 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
+ ;; Set transparency of emacs
+ (defun transparency (value)
+   "Sets the transparency of the frame window. 0=transparent/100=opaque"
+   (interactive "nTransparency Value 0 - 100 opaque:")
+   (set-frame-parameter (selected-frame) 'alpha value))
+(transparency 90)                       ; make emacs transparent !
+
 ;; All-the-icons allows to have sweet looking icons!
 ;; _IMPORTANT_: you need to run M-x all-the-icons-install-fonts to download the fonts and then install them manually.
 

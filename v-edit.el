@@ -110,6 +110,7 @@
   (vs/leader-key
     "t" '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")
+    "tn" '(vs/nordify :which-key "nordify")
     "f" '(:ignore t :which-key "files")
     "ff" '(counsel-find-file :which-key "find file")
     "fr" '(counsel-recentf :which-key "recent files")

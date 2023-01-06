@@ -56,7 +56,7 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 0))
+  (setq which-key-idle-delay 0.5))
 
 ;; browse kill-ring
 (use-package browse-kill-ring)
@@ -119,5 +119,23 @@
 (define-key vterm-mode-map (kbd "C-s") nil)
 (define-key vterm-mode-map (kbd "M-<up>") nil)
 
+
+;; Hydra
+(use-package hydra
+  :ensure t)
+
+(defhydra hydra-zoom ()
+  "zoom"
+  ("j" text-scale-increase "in")
+  ("k" text-scale-decrease "out")
+  ("r" (text-scale-set 0) "reset")
+  ("f" nil "finished" :exit t)
+  )
+
+
+(vs/leader-key
+  "z" '(hydra-zoom/body :which-key "zoom"))
+
 (provide 'v-qol)
+
 ;;; v-qol.el ends here

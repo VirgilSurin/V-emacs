@@ -53,6 +53,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump t)
+  (setq evil-want-minibuffer t)
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
@@ -67,10 +68,12 @@
 
 (use-package evil-collection
   :after evil
+  :ensure t
   :custom (evil-collection-setup-minibuffer t)
   :config
   (evil-collection-init)
-  (evil-collection-vterm-setup))
+  (evil-collection-vterm-setup)
+  )
 
 ;; comment line
 (global-set-key (kbd "C-M-;") 'comment-line)
@@ -99,7 +102,8 @@
 
   (vs/leader-key
     "t" '(:ignore t :which-key "toggles")
-    "tt" '(counsel-load-theme :which-key "choose theme")
+    "ts" '(counsel-load-theme :which-key "choose theme")
+    "tt" '(vterm :which-key "terminal")
     "tn" '(vs/nordify :which-key "nordify")
     "f" '(:ignore t :which-key "files")
     "ff" '(counsel-find-file :which-key "find file")
@@ -117,6 +121,7 @@
     "bb" '(ivy-switch-buffer :which-key "switch buffer")
     "bk" '(kill-current-buffer :which-key "kill buffer")
     "bd" '(kill-buffer-and-window :which-key "kill buffer and window")
+    "s" '(save-buffer :which-key "save current buffer")
     "g" '(magit-status :which-key "magit")
     )
   )

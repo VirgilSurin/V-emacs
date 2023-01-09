@@ -12,7 +12,7 @@
   ;; automatically annotate highlights
   (setq pdf-annot-activate-created-annotations t)
   ;; use normal isearch
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  (define-key pdf-view-mode-map (kbd "C-s") 'pdf-occur)
   ;; keyboard shortcuts
   (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
   (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
@@ -38,10 +38,8 @@
 
 (with-eval-after-load 'latex
   
-  
   (add-hook 'LaTeX-mode-hook (lambda () (display-line-numbers-mode 0)))
   (add-hook 'LaTeX-mode-hook 'vs/latex-mode-visual-fill)
-  
 
   (customize-set-variable 'TeX-auto-save t)
   (customize-set-variable 'TeX-parse-self t)

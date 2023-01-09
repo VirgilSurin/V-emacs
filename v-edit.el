@@ -28,12 +28,7 @@
 (use-package crux)
 
 ;; This package allows to go ignore comment when going to end-of-line
-(use-package mwim
-  :bind (
-         ("C-e"   . mwim-end)
-         ("C-a"   . mwim-beginning)
-         )
-  )
+(use-package mwim)
 
 ;; simply a better comment-dwim
 (use-package comment-dwim-2)
@@ -53,12 +48,12 @@
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-backward-char-and-join)
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
+  
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
 

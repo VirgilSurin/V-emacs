@@ -56,7 +56,7 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 0.5))
+  (setq which-key-idle-delay 0.3))
 
 ;; browse kill-ring
 (use-package browse-kill-ring)

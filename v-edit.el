@@ -14,19 +14,15 @@
             (avy-goto-word-1 . avy-order-closest)
             (avy-goto-line . avy-order-closest)
             ))
-   (setq avy-keys-alist
-          '(
-            (avy-goto-char . (?d ?f ?g ?h ?j ?k))
-            (avy-goto-word-1 . (?d ?f ?g ?h ?j ?k))
-            ;; (avy-goto-line . (?d ?f ?g ?h ?j ?k))
-            (avy-goto-line . (?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9 ?0))
-            ))
     (setq avy-style 'at-full)
     )
 
-(global-set-key (kbd "M-g f") 'avy-goto-line)
-(global-set-key (kbd "M-g w") 'avy-goto-word-1)
-(global-set-key (kbd "M-g k") 'avy-goto-char-timer)
+
+(vs/leader-key
+ "j"   '(:ignore t :which-key "jump")
+ "jj"  '(avy-goto-char :which-key "jump to char")
+ "jw"  '(avy-goto-word-1 :which-key "jump to word")
+ "jl"  '(avy-goto-line :which-key "jump to line"))
 
 ;; CRUX - a kot of useful little things
 (use-package crux)

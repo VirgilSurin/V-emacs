@@ -131,7 +131,18 @@
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (global-set-key (kbd "C-c i") 'lsp-ivy-workspace-symbol)
 
-(global-set-key (kbd "C-c C-v") 'lsp-execute-code-action)
+
+(vs/leader-key
+    "l"  '(:ignore t :which-key "lsp")
+    "lw" '(lsp-ivy-workspace-symbol :which-key "find symbol in workspace")
+    "ld" '(xref-find-definitions :which-key "find def")
+    "lr" '(xref-find-references :which-key "find ref")
+    "ls" '(counsel-imenu :which-key "counsel-imenu")
+    "le" '(lsp-ui-flycheck-list :which-key "flycheck list")
+    "lS" '(lsp-ui-sideline-mode :which-key "sideline-mode")
+    "lc" '(lsp-execute-code-action :which-key "code action"))
+
+
 
 ;; LSP UI
 (use-package lsp-ui

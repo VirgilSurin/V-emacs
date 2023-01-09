@@ -141,7 +141,10 @@
 (set-frame-parameter (selected-frame) 'fullscreen 'maximized) 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; turn on auto revert mode
+;; Revert Dired and other buffers
+(setq global-auto-revert-non-file-buffers t)
+
+;; Revert buffers when the underlying file has changed
 (global-auto-revert-mode t)
 
 ;; move all the backup files to specific cache directory

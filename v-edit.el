@@ -90,7 +90,7 @@
 (use-package general
   :config
   (general-evil-setup t)
-  (general-create-definer vs/leader-key 
+  (general-create-definer vs/leader-key
     :states '(normal visual insert emacs)
     :keymaps 'override
     :prefix "SPC"
@@ -99,6 +99,7 @@
   (vs/leader-key
     "t" '(:ignore t :which-key "toggles")
     "ts" '(counsel-load-theme :which-key "choose theme")
+    "tw" '(whitespace-mode :which-key "show whitespaces")
     "tt" '(vterm :which-key "terminal")
     "tn" '(vs/nordify :which-key "nordify")
     "f" '(:ignore t :which-key "files")

@@ -16,15 +16,22 @@
 
 ;; Parenthesis
 
+
 ;; Color for parenthesis indentation
 (use-package rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;; Show matching brackets and braces
+(require 'paren)
+(set-face-attribute 'show-paren-match-expression nil :background "#363e4a")
 (show-paren-mode 1)
 
 ;; ()
 (electric-pair-mode 1)
+
+;; Color for parenthesis indentation
+(use-package rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 
 ;; Refactoring

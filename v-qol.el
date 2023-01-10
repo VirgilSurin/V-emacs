@@ -134,6 +134,18 @@
 (vs/leader-key
   "z" '(hydra-zoom/body :which-key "zoom"))
 
+
+;; jump between windows 
+(use-package ace-window
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+        aw-scope 'frame
+        aw-minibuffer-flag t
+        )
+  )
+(global-set-key (kbd "M-o") 'ace-window)
+
+
 (provide 'v-qol)
 
 ;;; v-qol.el ends here

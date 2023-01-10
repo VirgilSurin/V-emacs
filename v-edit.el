@@ -2,27 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; AVY
-(use-package avy 
-    :ensure t
-    :config
-    (setq avy-all-windows t)
-    (setq avy-background nil)
-    (setq avy-orders-alist
-          '(
-            (avy-goto-char . avy-order-closest)
-            (avy-goto-word-1 . avy-order-closest)
-            (avy-goto-line . avy-order-closest)
-            ))
-    (setq avy-style 'at-full)
-    )
-
-
-(vs/leader-key
- "j"   '(:ignore t :which-key "jump")
- "jj"  '(avy-goto-char :which-key "jump to char")
- "jw"  '(avy-goto-word-1 :which-key "jump to word")
- "jl"  '(avy-goto-line :which-key "jump to line"))
 
 ;; CRUX - a kot of useful little things
 (use-package crux)
@@ -117,6 +96,29 @@
     "g" '(magit-status :which-key "magit")
     )
   )
+
+;; AVY
+(use-package avy 
+    :ensure t
+    :config
+    (setq avy-all-windows t)
+    (setq avy-background nil)
+    (setq avy-orders-alist
+          '(
+            (avy-goto-char . avy-order-closest)
+            (avy-goto-word-1 . avy-order-closest)
+            (avy-goto-line . avy-order-closest)
+            ))
+    (setq avy-style 'at-full)
+    )
+
+(vs/leader-key
+ "j"   '(:ignore t :which-key "jump")
+ "jj"  '(avy-goto-char :which-key "jump to char")
+ "jw"  '(avy-goto-word-1 :which-key "jump to word")
+ "jl"  '(avy-goto-line :which-key "jump to line"))
+
+
 
 (provide 'v-edit)
 ;;; v-edit.el ends here

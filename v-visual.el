@@ -229,14 +229,21 @@
 
 (display-battery-mode)
 
+(use-package good-scroll
+  :config
+  (good-scroll-mode 1)
+  )
 
-(use-package mini-frame)
 
-(setq mini-frame-show-parameters '((top . 0.4)
-                                   (width . 0.6)
-                                   (left . 0.5)))
+(use-package mini-frame
+  :config
+  (setq mini-frame-show-parameters '((top . 0.4)
+                                     (width . 0.6)
+                                     (left . 0.5)))
+  ;; (mini-frame-mode 1)
+  )
 
-;; (mini-frame-mode 1)
+
 
 (setq x-gtk-resize-child-frames 'resize-mode)
 ;; icons for dired

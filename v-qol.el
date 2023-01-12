@@ -6,38 +6,78 @@
 ;; Ivy
 (use-package smex)
 
-(use-package ivy
-  :diminish
-  :bind (
-         ("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done))
-  :config
-  (setq swiper-use-visual-line nil)
-  (setq swiper-use-visual-line-p (lambda (a) nil))
-  (setq ivy-height 10)
-  (setq ivy-count-format "")
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (ivy-mode 1)
-  )
+;; (use-package ivy
+;;   :diminish
+;;   :bind (
+;;          ("C-s" . swiper)
+;;          :map ivy-minibuffer-map
+;;          ("TAB" . ivy-alt-done))
+;;   :config
+;;   (setq swiper-use-visual-line nil)
+;;   (setq swiper-use-visual-line-p (lambda (a) nil))
+;;   (setq ivy-height 10)
+;;   (setq ivy-count-format "")
+;;   (setq ivy-initial-inputs-alist nil)
+;;   (setq ivy-use-virtual-buffers t)
+;;   (setq enable-recursive-minibuffers t)
+;;   (ivy-mode 1)
+;;   )
 
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1)
-  )
+;; (use-package ivy-rich
+;;   :init
+;;   (ivy-rich-mode 1)
+;;   )
 
 (use-package counsel
-  :bind (
-         ("M-x"     . 'counsel-M-x)
-         ("C-x C-f" . 'counsel-find-file)
-         ("C-c r"   . 'counsel-recentf)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history)
-         )
+;;   :bind (
+;;          ("M-x"     . 'counsel-M-x)
+;;          ("C-x C-f" . 'counsel-find-file)
+;;          ("C-c r"   . 'counsel-recentf)
+;;          :map minibuffer-local-map
+;;          ("C-r" . 'counsel-minibuffer-history)
+;;          )
 )
 
+;; Enable vertico
+(use-package vertico
+  :init
+  (vertico-mode)
+
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
+
+  ;; Show more candidates
+  (setq vertico-count 10)
+
+  ;; Grow and shrink the Vertico minibuffer
+  (setq vertico-resize t)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  (setq vertico-cycle t)
+  )
+
+;; Enable rich annotations using the Marginalia package
+(use-package marginalia
+  ;; Either bind `marginalia-cycle' globally or only in the minibuffer
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package consult
+  :bind (
+         ("C-s" . consult-line)
+         ("C-M-l" . consult-imenu)
+         ))
 
 ;; Helpful - better C-h
 (use-package helpful

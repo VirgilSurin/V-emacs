@@ -251,7 +251,7 @@
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
+  :custom ((projectile-completion-system 'auto))
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
@@ -259,7 +259,6 @@
   (when (file-directory-p "~/projects/")
    (setq projectile-project-search-path '("~/projects/")))
   (setq projectile-switch-project-action #'projectile-dired))
-
 
 
 (use-package counsel-projectile

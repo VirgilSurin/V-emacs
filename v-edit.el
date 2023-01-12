@@ -85,17 +85,18 @@
     "pf" '(projectile-find-file :which-key "find file in project")
     "pp" '(projectile-switch-project :which-key "switch project")
     "ps" '(projectile-save-project-buffers :which-key "save project buffers")
-    "pg" '(counsel-projectile-grep :which-key "grep project")
-    "pb" '(projectile-switch-to-buffer :which-key "switch to buffer")
+    "pg" '(consult-git-grep :which-key "grep project")
+    "pb" '(consult-project-buffer :which-key "switch to buffer")
     "pk" '(projectile-kill-buffers :which-key "kill project buffers")
     "b" '(:ignore t :which-key "buffers")
-    "bb" '(ivy-switch-buffer :which-key "switch buffer")
+    "bb" '(consult-buffer :which-key "switch buffer")
     "bk" '(kill-current-buffer :which-key "kill buffer")
     "bd" '(kill-buffer-and-window :which-key "kill buffer and window")
     "s" '(save-buffer :which-key "save current buffer")
     "g" '(magit-status :which-key "magit")
     )
   )
+
 
 ;; AVY
 (use-package avy 

@@ -3,6 +3,10 @@
 ;;; Code:
 ;; This file will regroup all my little quality of life packages like Ivy, Avy and so
 
+
+;; Get sudo right !
+(use-package sudo-edit)
+
 ;; Ivy
 (use-package smex)
 
@@ -102,15 +106,9 @@
 (use-package browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
-;; hungry delete
-(use-package hungry-delete
-  :config
-  (setq hungry-delete-join-reluctantly t)) ; will leave a space
-(global-hungry-delete-mode)
 
 (winner-mode 1)
-(global-set-key (kbd "C-c <left>")  'winner-undo)
-(global-set-key (kbd "C-c <right>") 'winner-redo)
+(define-key evil-normal-state-map (kbd "C-w u") 'winner-undo)
 
 
 ;; dired

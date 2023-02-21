@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
- ;; Set transparency of emacs
- (defun transparency (value)
-   "Sets the transparency of the frame window. 0=transparent/100=opaque"
-   (interactive "nTransparency Value 0 - 100 opaque:")
-   (set-frame-parameter (selected-frame) 'alpha value))
-(transparency 90)                       ; make emacs transparent !
+;; Set transparency of emacs
+(defun vs/transparency (value)
+  "Sets the transparency of the frame window. 0=transparent/100=opaque"
+  (interactive "nTransparency Value 0 - 100 opaque:")
+  (set-frame-parameter (selected-frame) 'alpha value))
+(vs/transparency 95)                       ; make emacs transparent !
 
 ;; All-the-icons allows to have sweet looking icons!
 ;; _IMPORTANT_: you need to run M-x all-the-icons-install-fonts to download the fonts and then install them manually.
@@ -39,7 +39,7 @@
 ;; (setq-default header-line-format og-modeline)
 
 ;; font
-(set-face-attribute 'default nil :font "JetBrains Mono Light" :height 150)
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 150)
 
 
 ;; where to display what
@@ -164,6 +164,14 @@
 (load-theme 'doom-material t)
 (vs/nordify)
 
+
+(defun vs/center-text (value)
+  "Center the text in a buffer."
+  (interactive "nset visual fill width: ")
+  (setq visual-fill-column-width value
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1)
+  )
 
 ;; Fall back font for glyph missing in Roboto
 (defface fallback '((t :family "Fira Code"
